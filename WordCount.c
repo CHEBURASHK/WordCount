@@ -24,8 +24,11 @@ int countw(char *filename){
     int isLastBlank = 0; 
     int totalword=0;
     int wordNum = 0; 
-    if( (fp=fopen(filename, "rb")) == NULL ){
-        perror(filename);
+    char *path =  (char *)malloc(300);
+    strcpy(path, "D:\\Git\\WordCount\\");
+    strcat(path, filename);
+    if( (fp=fopen(path, "r")) == NULL ){
+        perror(path);
         return 0;
     }
     while(fgets(buffer, 1003, fp) != NULL){
@@ -33,8 +36,8 @@ int countw(char *filename){
         for(i=0; i<bufferLen; i++){
             c = buffer[i];
             if( c==' ' || c=='\t' || c==','){ 
-                !isLastBlank && wordNum++; //当上一个不是空格，而这一个是空格时单词数+1 
-                isLastBlank = 1;//表明一个空格
+                !isLastBlank && wordNum++; 
+                isLastBlank = 1;
            }
 		   else if(c!='\n'&&c!='\r'){ 
                isLastBlank = 0;
@@ -58,8 +61,11 @@ int countc(char *filename){
     char c; 
     int totalchar=0;
     int charNum = 0; 
-    if( (fp=fopen(filename, "rb")) == NULL ){
-        perror(filename);
+    char *path =  (char *)malloc(300);
+    strcpy(path, "D:\\Git\\WordCount\\");
+    strcat(path, filename);
+    if( (fp=fopen(path, "r")) == NULL ){
+        perror(path);
         return 0;
     }
     while(fgets(buffer, 1003, fp) != NULL){
